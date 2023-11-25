@@ -11,8 +11,8 @@ This is the most common use case. The decompression library is small, adding, fo
 
 Create `zstddeclib.c` from the Zstd source using:
 ```
-cd zstd/contrib/single_file_libs
-./combine.sh -r ../../lib -o zstddeclib.c zstddeclib-in.c
+cd zstd/build/single_file_libs
+python3 combine.py -r ../../lib -x legacy/zstd_legacy.h -o zstddeclib.c zstddeclib-in.c
 ```
 Then add the resulting file to your project (see the [example files](examples)).
 
@@ -25,8 +25,8 @@ The same tool can amalgamate the entire Zstd library for ease of adding both com
 
 Create `zstd.c` from the Zstd source using:
 ```
-cd zstd/contrib/single_file_libs
-./combine.sh -r ../../lib -o zstd.c zstd-in.c
+cd zstd/build/single_file_libs
+python3 combine.py -r ../../lib -x legacy/zstd_legacy.h -k zstd.h -o zstd.c zstd-in.c
 ```
 It's possible to create a compressor-only library but since the decompressor is so small in comparison this doesn't bring much of a gain (but for the curious, simply remove the files in the _decompress_ section at the end of `zstd-in.c`).
 
